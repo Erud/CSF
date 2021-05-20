@@ -1,0 +1,1 @@
+﻿Get-WmiObject -Namespace root\cimv2\security\microsofttpm -Class Win32_TPM
