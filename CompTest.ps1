@@ -1,15 +1,11 @@
 ﻿$name = "pcs"
 $computers = get-content "c:\temp\$name.txt"
-$nameOk = "C:\Temp\$name" + "OK.txt"
-$nameNO = "C:\Temp\$name" + "NO.txt"
-if (Test-Path $nameOk) 
+$nameOut = "C:\Temp\$name" + "Out.txt"
+if (Test-Path $nameOut) 
 {
-	Remove-Item $nameOk
+	Remove-Item $nameOut
 }
-if (Test-Path $nameNO) 
-{
-	Remove-Item $nameNO
-}
+
 foreach ($comp in $computers) {
 	#	$comp = $comp.Trim() + ".centurionmp.com"
 	$comp = $comp.Trim()

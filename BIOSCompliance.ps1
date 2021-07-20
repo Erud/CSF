@@ -1,4 +1,5 @@
-﻿$model=(Get-WmiObject -Class:Win32_ComputerSystem).Model
+﻿# script location \\psccm-app-01\repositories$\Scripts\PowerShell
+$model=(Get-WmiObject -Class:Win32_ComputerSystem).Model
 #$BIOSKey=Get-ItemProperty -path HKLM:\SYSTEM\HardwareConfig\Current\ -ErrorAction SilentlyContinue
 $BIOSVersion=0
 $BIOSVersion=(wmic bios get smbiosbiosversion) -replace '\D+(\d+)','$1'
@@ -19,6 +20,7 @@ $VersionMap=@(
 ("HP EliteBook 840 G5","Q78 Ver. 01.04.00"),
 ("HP EliteBook 840 G6","R70 Ver. 01.03.03"),
 ("HP EliteBook 840 G7 Notebook PC","S70 Ver. 01.04.02"),
+("HP EliteBook 840 G8 Notebook PC","T76 Ver. 01.04.01"),
 ("HP EliteBook 850 G4","P78 Ver. 01.23"),
 ("HP EliteBook 850 G6","R70 Ver. 01.08.01"),
 ("HP EliteBook Folio 1040 G3","N83 Ver. 01.33"),
@@ -47,10 +49,13 @@ $VersionMap=@(
 ("HP ZBook 15 G4","P70 Ver. 01.29"),
 ("HP ZBook 15v G5","F.10"),
 ("HP ZBook Power G7 Mobile Workstation","T75 Ver. 01.04.01"),
+("HP ZBook Power G8 Mobile Workstation","T81 Ver. 00.37.00"),
 ("HP ZBook Studio G5","Q71 Ver. 01.04.05"),
 ("P70 Ver. 01.23","P70 Ver. 01.23"),
 ("SLIC-BPC",""),
-("SLIC-CPC","")
+("SLIC-CPC",""),
+("VMware Virtual Platform","6"),
+("Virtual Machine","Hyper-V UEFI Release v4.0")
 )
 
 #Iterate through VersionMap to confirm version number based on model

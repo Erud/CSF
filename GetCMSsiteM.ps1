@@ -21,3 +21,6 @@ if((Get-PSDrive -Name $SiteCode -PSProvider CMSite -ErrorAction SilentlyContinue
 
 # Set the current location to be the site code.
 Set-Location "$($SiteCode):\" @initParams
+
+# remove
+# Remove-PSDrive -Name $SiteCode

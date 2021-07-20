@@ -9,7 +9,7 @@ if (Test-Path $outFile) {
 	Remove-Item $outFile
 }
 
-$comps = Get-Content C:\Temp\coms.txt
+$comps = Get-Content C:\Temp\pcs.txt
 foreach ($comp in $comps) {
 
 	$acomp = $comp.Split('.')

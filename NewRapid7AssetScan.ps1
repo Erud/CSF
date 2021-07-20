@@ -29,11 +29,11 @@ $mycred = new-object -typename System.Management.Automation.PSCredential -argume
 $null = Connect-NexposeAPI -HostName '10.3.159.100' -Port '3780' -Credential $mycred -SkipSSLCheck
 $Sites = Get-NexposeSite
 
-$name = "pcs"
+$name = "pcsw"
 
 $computers = get-content "c:\temp\$name.txt"
 foreach ($comp in $computers) {
-	#$comp = "MR-01386-D1"
+	#$comp = "CTS-00560-L1"
 	$compIP = $false
 	$compIP = (Test-Connection -Cn $comp -BufferSize 16 -Count 1 -ErrorAction 0).IPV4Address.IPAddressToString
 	if(!$compIP){
@@ -50,15 +50,24 @@ foreach ($comp in $computers) {
 				if($atarget.Count -gt 1 ){ 
 					if(IsIpAddressInRange $compIP $atarget[0] $atarget[2]){
 						if(($siteID -ne 3) -and ($siteID -ne 6072)){ 
-							$comp + '  ' + $compIP + '  ' + $siteID + '  ' + $siteName + '  ' + $target
-# Get-NexposeAsset -Name 325
-# Start-NexposeAssetScan -Name 'Scan 1' -SiteId 4 -AssetId 42 
+							#$asset = Get-NexposeAsset -Name $comp
+							$asset = Get-NexposeAsset -IpAddress $compIP
+							$comp + '  ' + $compIP + '  ' + $asset.id + '  ' + $siteID + '  ' + $siteName + '  ' + $target
+							#Get-NexposeScanTemplate | out-gridview "full-audit-without-web-spider"
+							if ($asset.id) {
+							#	Start-NexposeAssetScan -Name 'ER' -SiteId $siteID -AssetId $asset.id -TemplateId full-audit-without-web-spider
+							}
+							#break 
 						}
 					}
 				} else {
 					if($compIP -eq $atarget){
 						if(($siteID -ne 3) -and ($siteID -ne 6072)){
-							$comp + '  ' + $compIP + '  ' + $siteID + '  ' + $siteName + '  ' + $target
+							$asset = Get-NexposeAsset -Name $comp
+							$comp + '  ' + $compIP + '  ' + $asset.id + '  ' + $siteID + '  ' + $siteName + '  ' + $target
+							#Get-NexposeScanTemplate | out-gridview "full-audit-without-web-spider"
+							Start-NexposeAssetScan -Name 'ER' -SiteId $siteID -AssetId $asset.id -TemplateId full-audit-without-web-spider
+							break
 						}
 					}
 				}
