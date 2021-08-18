@@ -1,4 +1,4 @@
-﻿$user = "acromble"
+﻿$user = "LGOLYZNI"
 Get-ADUser -Identity $user -Properties “LastLogonDate”
 
 Get-ADComputer -Identity "CTS-00911-D1" -Properties * | FT Name, LastLogonDate -Autosize

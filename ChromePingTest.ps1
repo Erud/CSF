@@ -1,4 +1,4 @@
-﻿$name = "pcs"
+﻿$name = "pcsc"
 $chromeCompliantVersion = "91.0.4472.106"
 $computers = get-content "c:\temp\$name.txt"
 $nameOk = "C:\Temp\$name" + "OK.txt"

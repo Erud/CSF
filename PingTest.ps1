@@ -1,4 +1,4 @@
-﻿$name = "pcs"
+﻿$name = "pc"
 $computers = get-content "c:\temp\$name.txt"
 $nameOk = "C:\Temp\$name" + "OK.txt"
 $nameNO = "C:\Temp\$name" + "NO.txt"
